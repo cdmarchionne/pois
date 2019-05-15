@@ -21,8 +21,11 @@ public class ServicioWebCapasTest {
 	}
 	
 	@Test
-	public void alIngresarCoordenadasInvalidasLanzaUnaExcepcion() {
+	public void alIngresarCoordenadasInvalidasNoDevuelveUnPoiYdaMensajeNoValido() {
 		
+		PoiResponse response = servicioWebCapas.obtenerPOIMasCercano("servico", "-34", "45");
+		
+		assertThat(response.getMensaje()).isEqualTo(ServicioWebCapas.MENSAJE_ERROR_COORDENADA_INVALIDA);
 	}
 
 }

@@ -16,6 +16,7 @@ import ar.com.curso.poi.servicios.ServicioPOIImpl;
 @Path("/")
 public class ServicioWebCapas {
 
+	static String MENSAJE_ERROR_COORDENADA_INVALIDA = "el punto ingresado es inválido";
     private ServicioPOI servicioPOI = new ServicioPOIImpl();
 
     @GET
@@ -42,6 +43,10 @@ public class ServicioWebCapas {
         @PathParam("latitud") String latitud,
         @PathParam("longitud") String longitud) {
 
+    	
+    	if(!(esCoordenadaValida(latitud) && esCoordenadaValida(longitud))) {
+        	return new PoiResponse(new POI(), MENSAJE_ERROR_COORDENADA_INVALIDA);
+        }  
 //        List<POI> pois = servicioPOI.obtenerPOIs(nombreServicio);
     	List<POI> pois = RepositorioPOI.getInstance().getAll();
 
@@ -50,8 +55,7 @@ public class ServicioWebCapas {
 
         POI ubicacionActual = new POI(latitud, longitud);
 
-        validarCoordenada(latitud);
-        validarCoordenada(longitud);
+              
         
         if (!pois.isEmpty()) {
 
@@ -71,12 +75,10 @@ public class ServicioWebCapas {
         return new PoiResponse(poiConDistanciaMinima);
     }
 
-	private void validarCoordenada(String coordenada) {
+	private boolean esCoordenadaValida(String coordenada) {
 
-		if(!coordenada.contains("-")) {
-		
-			throw new RuntimeException("el punto ingresado es inválido");
-		}
-		
+		return coordenada.contains("-");
 	}
+	
+
 }
