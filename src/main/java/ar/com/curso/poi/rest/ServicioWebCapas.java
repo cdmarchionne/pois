@@ -38,7 +38,7 @@ public class ServicioWebCapas {
     @GET
     @Path("/poiMasCercano/{nombreServicio}/{latitud}/{longitud}")
     @Produces("application/xml")
-    public POI obtenerPOIMasCercano(@PathParam("nombreServicio") String nombreServicio,
+    public PoiResponse obtenerPOIMasCercano(@PathParam("nombreServicio") String nombreServicio,
         @PathParam("latitud") String latitud,
         @PathParam("longitud") String longitud) {
 
@@ -50,7 +50,8 @@ public class ServicioWebCapas {
 
         POI ubicacionActual = new POI(latitud, longitud);
 
-//        ValidarCoordenada();
+        validarCoordenada(latitud);
+        validarCoordenada(longitud);
         
         if (!pois.isEmpty()) {
 
@@ -67,6 +68,15 @@ public class ServicioWebCapas {
             }
         }
 
-        return poiConDistanciaMinima;
+        return new PoiResponse(poiConDistanciaMinima);
     }
+
+	private void validarCoordenada(String coordenada) {
+
+		if(!coordenada.contains("-")) {
+		
+			throw new RuntimeException("el punto ingresado es inválido");
+		}
+		
+	}
 }
