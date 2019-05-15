@@ -1,56 +1,44 @@
 package ar.com.curso.poi.kata.tdd;
 
+import java.math.BigDecimal;
+
 public class Cerradura {
 
-    private int claveDeApertura;
-    private int cantidadFallos = 0;
-    private int cantidadDeFallosConsecutivosQueLaBloquean;
-    private boolean cerrada;
-    private boolean bloqueada;
+	private int clave;
+	private int cantFallos;
+	private boolean estaCerrada = false;
 
-    public Cerradura(int claveDeApertura, int cantidadDeFallosConsecutivosQueLaBloquean) {
+	public Cerradura(int clave, int cantFallos) {
+		this.clave = clave;
+		this.cantFallos = cantFallos;
+	}
 
-        this.claveDeApertura = claveDeApertura;
-        this.cantidadDeFallosConsecutivosQueLaBloquean = cantidadDeFallosConsecutivosQueLaBloquean;
-        cerrada = true;
-        bloqueada = false;
-    }
+	public int getClave() {
+		return clave;
+	}
 
-    public boolean estaCerrada() {
+	public int getCantidadDeFallos() {
+		return cantFallos;
+	}
 
-        return cerrada;
-    }
+	public boolean abrir(int clave) {
+		boolean claveCorrecta = (this.clave == clave);
+		if (claveCorrecta)
+			estaCerrada = false;
+		
+		return claveCorrecta;
+	}
 
-    public boolean fueBloqueada() {
+	public void cerrar() {
+		estaCerrada = true;
+	}
 
-        return bloqueada;
-    }
+	public boolean estaCerrada() {
+		return estaCerrada;
+	}
 
-    public boolean abrir(int clave) {
+	public boolean estaAbierta() {
+		return !estaCerrada;
+	}
 
-        if (clave == claveDeApertura) {
-
-            cerrada = false;
-            return true;
-        }
-
-        cantidadFallos++;
-
-        if (cantidadFallos > cantidadDeFallosConsecutivosQueLaBloquean) {
-
-            bloqueada = true;
-        }
-
-        return false;
-    }
-
-    public Object contarAperturasExitosas() {
-
-        return 1;
-    }
-
-    public void cerrar() {
-
-        cerrada = true;
-    }
 }

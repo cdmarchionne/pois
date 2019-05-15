@@ -11,11 +11,10 @@ public class CalculadorDeDistanciaTest {
 	@Test
 	public void testDistanciaNula() {
 		
-		CalculadorDeDistancia calculadorDeDistancia = new CalculadorDeDistancia();
 		POI poi = new POI(30D, 40D, "Havanna", "Cafeteria");
 		POI ubicacionActual = new POI(30D, 40D, "Mi casa", "Casa");
 		
-		Double distancia = calculadorDeDistancia.calcularDistancia(poi, ubicacionActual);
+		Double distancia = CalculadorDeDistancia.calcularDistancia(poi, ubicacionActual);
 		assertThat(distancia).isEqualTo(0.0);
 
 	}
@@ -23,11 +22,10 @@ public class CalculadorDeDistanciaTest {
 	@Test
 	public void testDistancia() {
 		
-		CalculadorDeDistancia calculadorDeDistancia = new CalculadorDeDistancia();
 		POI poi = new POI(30D, 40D, "Havanna", "Cafeteria");
 		POI ubicacionActual = new POI(10D, 10D, "Mi casa", "Casa");
 		
-		Double distancia = calculadorDeDistancia.calcularDistancia(poi, ubicacionActual);
+		Double distancia = CalculadorDeDistancia.calcularDistancia(poi, ubicacionActual);
 		assertThat(distancia).isEqualTo(36.055, offset(0.1));
 
 	}

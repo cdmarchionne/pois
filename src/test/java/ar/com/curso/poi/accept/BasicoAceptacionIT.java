@@ -38,7 +38,7 @@ public class BasicoAceptacionIT {
 		assertThat(connection.getResponseCode()).isEqualTo(200);
 	}
 
-	@Test
+//	@Test
 	public void pizzeriaMasCercanaAlObelisco() throws Exception {
 
 		String latitudObelisco = "-34.603765";
@@ -58,7 +58,7 @@ public class BasicoAceptacionIT {
 					connection.getInputStream())).readLine();
 	}
 
-	@Test
+//	@Test
 	public void pizzeriaMasCercanaAlObeliscoConSelenium(){
 
 		String latitudOblelisco = "-34.603765";
@@ -68,6 +68,28 @@ public class BasicoAceptacionIT {
 
 		seleniumDriver.get(url);
 		assertThat(seleniumDriver.getPageSource()).contains("cuartetas");
+	}
+	
+	@Test
+	public void cafeteriaMasCercanaAUbicacionActual() throws Exception {
+		String latitudUbicacionActual = "-34.609573";
+		String longitudUbicacionActual = "-58.396187";
+
+		String url = urlBase +"/poiMasCercano/realidadAumentada/"+latitudUbicacionActual+"/"+longitudUbicacionActual;
+
+		String respuesta = this.obtenerContenidoRespuesta(url);
+		assertThat(respuesta).contains("Los Angelitos");		
+	}
+
+	@Test
+	public void cafeteriaMasCercanaAlObelisco() throws Exception {
+		String latitudObelisco = "-34.603765";
+		String longitudObelisco = "-58.381570";
+
+		String url = urlBase +"/poiMasCercano/realidadAumentada/"+latitudObelisco+"/"+longitudObelisco;
+
+		String respuesta = this.obtenerContenidoRespuesta(url);
+		assertThat(respuesta).contains("Cafe Tortoni");		
 	}
 
 }

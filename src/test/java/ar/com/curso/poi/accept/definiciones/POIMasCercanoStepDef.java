@@ -1,15 +1,16 @@
 package ar.com.curso.poi.accept.definiciones;
 
-import cucumber.api.java.es.Cuando;
-import cucumber.api.java.es.Dado;
-import cucumber.api.java.es.Entonces;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import cucumber.api.PendingException;
+import cucumber.api.java.es.Cuando;
+import cucumber.api.java.es.Dado;
+import cucumber.api.java.es.Entonces;
 
 public class POIMasCercanoStepDef {
 
@@ -42,6 +43,12 @@ public class POIMasCercanoStepDef {
     public void el_servicio_devuelve_el_nombre_de_un_poi(String poiEsperado){
         assertThat(respuestaJson).contains(poiEsperado);
     }
+    
+    @Entonces("^el servicio devuelve el mensaje \"([^\"]*)\"$")
+    public void el_servicio_devuelve_el_mensaje(String mensaje) throws Throwable {
+        assertThat(respuestaJson).contains(mensaje);
+    }
+	
 
 
     private String obtenerContenidoRespuesta(String url) throws Exception {
