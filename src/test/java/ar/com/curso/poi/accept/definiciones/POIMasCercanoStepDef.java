@@ -45,11 +45,16 @@ public class POIMasCercanoStepDef {
     }
     
     @Entonces("^el servicio devuelve el mensaje \"([^\"]*)\"$")
-    public void el_servicio_devuelve_el_mensaje(String mensaje) throws Throwable {
+    public void el_servicio_devuelve_el_mensaje(String mensaje) {
         assertThat(respuestaJson).contains(mensaje);
     }
 	
-
+    @Entonces("^el servicio no devuelve ninguno de los siguientes puntos (.*), (.*) y (.*)$")
+    public void el_servicio_devuelve_el_mensaje(String poi1, String poi2, String poi3) {
+        assertThat(respuestaJson).doesNotContain(poi1);
+        assertThat(respuestaJson).doesNotContain(poi2);
+        assertThat(respuestaJson).doesNotContain(poi3);
+    }
 
     private String obtenerContenidoRespuesta(String url) throws Exception {
         HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();

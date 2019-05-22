@@ -19,15 +19,14 @@ public class RepositorioCapas {
         Capa pizzerias = new Capa("pizzerias");
         pizzerias.setPOIs(crearCapaPizzerias());
 
-        Capa cafeterias = new Capa("cafeterias");
-        cafeterias.setPOIs(crearCapaCafeterias());
+        Capa realidadAumentada = new Capa("realidadAumentada");
+        realidadAumentada.setPOIs(crearCapaCafeterias());
 
         capas.put(pizzerias.getNombre(), pizzerias);
-        capas.put(cafeterias.getNombre(), cafeterias);
+        capas.put(realidadAumentada.getNombre(), realidadAumentada);
     }
 
     public static RepositorioCapas getInstance() {
-
         return instance;
     }
 
@@ -65,21 +64,23 @@ public class RepositorioCapas {
     public List<POI> crearCapaCafeterias() {
 
         List<POI> pois = new ArrayList<POI>();
-        pois.add(new POI(
-            -34.609573,
-            -58.396187,
-            "Los Angelitos",
-            "Cafeteria con historia"));
-        pois.add(new POI(
-            -34.602305,
-            -58.429459,
-            "Havanna",
-            "Cafeteria moderna en Av Corrientes"));
-        pois.add(new POI(
-            -34.603983,
-            -58.410941,
-            "Starbucks",
-            "Cafeteria internacional en Abasto Shopping"));
+    	pois.add(new POI(
+    			-34.609573,
+	            -58.396187,
+	            "Los Angelitos",
+	            "Cafeteria con historia"));
+    	
+    	pois.add(new POI(
+                -34.608801,
+                -58.378084,
+                "Cafe Tortoni",
+                "Cafeteria con historia"));
+    	
+    	pois.add(new POI(
+                -34.611245,
+                -58.420911,
+                "Las Violetas",
+                "Cafeteria con historia"));
         return pois;
     }
 

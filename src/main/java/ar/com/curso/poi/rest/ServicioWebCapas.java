@@ -46,9 +46,10 @@ public class ServicioWebCapas {
     	
     	if(!(esCoordenadaValida(latitud) && esCoordenadaValida(longitud))) {
         	return new PoiResponse(new POI(), MENSAJE_ERROR_COORDENADA_INVALIDA);
-        }  
-//        List<POI> pois = servicioPOI.obtenerPOIs(nombreServicio);
-    	List<POI> pois = RepositorioPOI.getInstance().getAll();
+        }
+
+        List<POI> pois = servicioPOI.obtenerPOIs(nombreServicio);
+//    	List<POI> pois = RepositorioPOI.getInstance().getAll();
 
         Double distanciaMinima = 0.0;
         POI poiConDistanciaMinima = new POI();
@@ -71,9 +72,7 @@ public class ServicioWebCapas {
     }
 
 	private boolean esCoordenadaValida(String coordenada) {
-
 		return coordenada.contains("-");
 	}
-	
 
 }

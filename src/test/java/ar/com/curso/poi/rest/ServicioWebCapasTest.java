@@ -16,14 +16,12 @@ public class ServicioWebCapasTest {
 	
 	@Test
 	public void alIngresarUnaCoordenadaValidaRetornaMensajeOK() {
-		
-		assertThat(servicioWebCapas.obtenerPOIMasCercano("servicio", "-34", "-58")).isInstanceOf(PoiResponse.class);
+		assertThat(servicioWebCapas.obtenerPOIMasCercano("realidadAumentada", "-34", "-58")).isInstanceOf(PoiResponse.class);
 	}
 	
 	@Test
 	public void alIngresarCoordenadasInvalidasNoDevuelveUnPoiYdaMensajeNoValido() {
-		
-		PoiResponse response = servicioWebCapas.obtenerPOIMasCercano("servico", "-34", "45");
+		PoiResponse response = servicioWebCapas.obtenerPOIMasCercano("realidadAumentada", "-34", "45");
 		
 		assertThat(response.getMensaje()).isEqualTo(ServicioWebCapas.MENSAJE_ERROR_COORDENADA_INVALIDA);
 	}
