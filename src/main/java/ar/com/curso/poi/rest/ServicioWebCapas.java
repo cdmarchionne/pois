@@ -16,7 +16,7 @@ import ar.com.curso.poi.servicios.ServicioPOIImpl;
 @Path("/")
 public class ServicioWebCapas {
 
-	static String MENSAJE_ERROR_COORDENADA_INVALIDA = "el punto ingresado es inválido";
+	static String MENSAJE_ERROR_COORDENADA_INVALIDA = "el punto ingresado es invalido";
     private ServicioPOI servicioPOI = new ServicioPOIImpl();
 
     @GET
@@ -53,20 +53,15 @@ public class ServicioWebCapas {
         Double distanciaMinima = 0.0;
         POI poiConDistanciaMinima = new POI();
 
-        POI ubicacionActual = new POI(latitud, longitud);
-
-              
+        POI ubicacionActual = new POI(latitud, longitud);           
         
         if (!pois.isEmpty()) {
-
             poiConDistanciaMinima = pois.get(0);
             distanciaMinima = CalculadorDeDistancia.calcularDistancia(poiConDistanciaMinima, ubicacionActual);
         }
 
         for (POI unPoi : pois) {
-
             if (CalculadorDeDistancia.calcularDistancia(unPoi, ubicacionActual) < distanciaMinima) {
-
                 distanciaMinima = CalculadorDeDistancia.calcularDistancia(unPoi, ubicacionActual);
                 poiConDistanciaMinima = unPoi;
             }
